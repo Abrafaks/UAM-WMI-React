@@ -1,0 +1,9 @@
+.container{
+  border-bottom: 1px solid goldenrod;
+  padding: 1rem;
+}
+
+.container h3{
+  margin: 0;
+
+}
