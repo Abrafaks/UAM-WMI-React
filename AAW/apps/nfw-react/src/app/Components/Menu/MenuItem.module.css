@@ -1,0 +1,10 @@
+.container{
+  border-bottom: 1px solid goldenrod;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container h3{
+  margin: 0;
+}
