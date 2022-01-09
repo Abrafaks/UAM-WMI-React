@@ -1,5 +1,9 @@
-.totalPrice {
+.totalPriceAndOrder {
   text-align: center;
-  padding: 1rem;
+  padding: 2rem;
   font-weight: bold;
+}
+
+.totalPriceAndOrder div {
+  padding: 0.5rem;
 }

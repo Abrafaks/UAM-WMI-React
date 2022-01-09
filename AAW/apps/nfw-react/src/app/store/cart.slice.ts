@@ -17,7 +17,7 @@ export const cartSlice = createSlice({
         newPizza.amount = 1;
         state.cart.push(newPizza);
       }
-      state.totalAmount += newPizza.price
+      state.totalAmount += newPizza.price;
     },
 
     removeOneFromCart(state, action) {
@@ -33,8 +33,13 @@ export const cartSlice = createSlice({
         } else {
           state.cart.splice(itemInCartIndex, 1);
         }
-        state.totalAmount -= pizzaToRemove.price
+        state.totalAmount -= pizzaToRemove.price;
       }
+    },
+
+    deleteEntireCart(state){
+      state.cart = [];
+      state.totalAmount = 0;
     }
   }
 });
