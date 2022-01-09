@@ -29,10 +29,10 @@ const MenuItem = (props) => {
         </div>
         <div>{price}zł</div>
       </div>
-      <div>
-        <button onClick={addItem}>ADD</button>
-        {shouldRemoveButtonBeDisplayed && cartItems[indexOfCurrentItemInCart].amount}
-        {shouldRemoveButtonBeDisplayed && <button onClick={removeOneItem}>REMOVE</button>}
+      <div className={styles.buttonsAndCounter}>
+        <button className={styles.buttons} onClick={addItem}>+</button>
+        <div className={styles.counter}> {shouldRemoveButtonBeDisplayed && cartItems[indexOfCurrentItemInCart].amount}</div>
+        {shouldRemoveButtonBeDisplayed && <button className={styles.buttons} onClick={removeOneItem}>-</button>}
       </div>
     </div>
   )
