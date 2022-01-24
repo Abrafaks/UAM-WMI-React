@@ -8,6 +8,7 @@ export const pizzasSlice = createSlice({
   reducers: {
     setPizzas(state, action) {
       state.pizzas = action.payload;
+      console.log(state.pizzas)
     },
   }
 });

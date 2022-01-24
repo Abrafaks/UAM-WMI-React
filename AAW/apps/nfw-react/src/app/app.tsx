@@ -6,6 +6,7 @@ import { createBrowserHistory } from 'history';
 import './app.css';
 import Cart from './Components/Cart/Cart';
 import Home from './Components/Home/Home';
+import Delivery from './Components/Delivery/Delivery';
 
 const customHistory = createBrowserHistory();
 
@@ -22,6 +23,9 @@ export const App = () => {
         </Route>
         <Route path="/home">
           <Home />
+        </Route>
+        <Route path="/delivery">
+          <Delivery />
         </Route>
         <Route path="/*">
           <Redirect to='home'/>

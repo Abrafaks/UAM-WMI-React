@@ -1,16 +1,22 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import React from 'react';
 import MenuItem from './MenuItem';
 import styles from './Menu.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { pizzasActions } from '../../store/pizzas.slice';
+import { sauceActions } from '../../store/sauce.slice';
+
+enum CartItemType{
+  Pizza = 'pizza',
+  Sauce = 'sauce'
+}
 
 const Menu = (props) => {
   const dispatch = useDispatch();
   const [pizzaItems, setPizzaItems] = useState([]);
-  const storedPizzas = useSelector((state: RootState) => state.pizzas.pizzas);
+  let storedPizzas = useSelector((state: RootState) => state.pizzas.pizzas);
+  const storedSauces = useSelector((state: RootState) => state.sauce.sauces);
 
   useEffect(() => {
 
@@ -20,16 +26,15 @@ const Menu = (props) => {
           return <MenuItem data={pizza} key={pizza.id} />;
         })
       );
-    }
-
-    if(storedPizzas.length > 0){
-      processPizzas(storedPizzas)
-    }else{
+    };
+storedPizzas = []
+    if (storedPizzas.length > 0) {
+      processPizzas(storedPizzas);
+    } else {
       let ingredientList;
       const fetchIngredients = async () => {
         ingredientList = (await axios.get('http://localhost:3333/api/ingredient'))
           .data;
-        console.log(ingredientList);
       };
 
       // id, name, price, ingredients
@@ -45,20 +50,30 @@ const Menu = (props) => {
           });
 
           pizza.ingredients = ingredients;
-          console.log('HERE IS THE PIZZA', pizza)
+          pizza.type = CartItemType.Pizza
           return pizza;
         });
 
-        dispatch(pizzasActions.setPizzas(pizzas))
-        processPizzas(pizzas)
-
+        dispatch(pizzasActions.setPizzas(pizzas));
+        processPizzas(pizzas);
       };
 
       fetchPizzas();
     }
 
+    if (storedSauces.length === 0) {
+      // id, name, price
+      const fetchSauces = async () => {
+        let sauces = (await axios.get('http://localhost:3333/api/sauce')).data;
 
-  }, [ ]);
+        console.log(sauces);
+
+        dispatch(sauceActions.setSauces(sauces));
+      };
+
+      fetchSauces();
+    }
+  }, []);
 
   return <div className={styles.gridContainer}>{pizzaItems}</div>;
 };

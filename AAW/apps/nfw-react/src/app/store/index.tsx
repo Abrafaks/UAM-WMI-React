@@ -4,11 +4,13 @@ import storage from 'redux-persist/lib/storage';
 import { navSlice } from './nav.slice';
 import { pizzasSlice } from './pizzas.slice';
 import { cartSlice } from './cart.slice';
+import { sauceSlice } from './sauce.slice';
 
 export const rootReducer = combineReducers({
   nav: navSlice.reducer,
   pizzas: pizzasSlice.reducer,
-  cart: cartSlice.reducer
+  cart: cartSlice.reducer,
+  sauce: sauceSlice.reducer
 });
 
 const persistConfig = {

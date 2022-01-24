@@ -7,7 +7,7 @@ import { RootState } from '../../store';
 const MenuItem = (props) => {
   const dispatch = useDispatch();
   const { name, price, ingredients } = props.data;
-  const cartItems = useSelector((state: RootState) => state.cart.cart);
+  let cartItems = useSelector((state: RootState) => state.cart.cart) || [];
 
   const addItem = () => {
     dispatch(cartActions.addToCart(props.data));
