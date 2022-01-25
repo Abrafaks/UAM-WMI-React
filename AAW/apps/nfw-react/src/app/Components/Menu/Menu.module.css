@@ -3,6 +3,10 @@
   grid-template-columns: 1fr 1fr;
 }
 
+.headers {
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .gridContainer {
    display: block;

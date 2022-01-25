@@ -8,6 +8,7 @@ import styles from '../Menu/Menu.module.css';
 import cartStyles from './Cart.module.css';
 import { RootState } from '../../store';
 import { cartActions } from '../../store/cart.slice';
+import { CartItemType } from '../Menu/Menu';
 
 const Cart = (props) => {
   const dispatch = useDispatch();
@@ -23,9 +24,16 @@ const Cart = (props) => {
   const sendOrder = async () => {
     try {
       setIsOrderBeingSent(true);
-      console.log(isButtonDisabled);
+      console.log(cartItems)
+      const pizzas = cartItems.filter((cartItem) => cartItem.type === CartItemType.Pizza)
+      console.log(pizzas)
+      const sauces = cartItems.filter((cartItem) => cartItem.type === CartItemType.Sauce)
+      console.log(sauces)
+      console.log(cartItems)
+
       const result = (await axios.post('http://localhost:3333/api/order', {
-        pizza: cartItems,
+        pizza: pizzas,
+        sauce: sauces,
         total: totalAmount
       }));
 
@@ -37,6 +45,8 @@ const Cart = (props) => {
       }
 
     } catch (e) {
+      console.log(e)
+
       console.log(e.response);
     }
   };

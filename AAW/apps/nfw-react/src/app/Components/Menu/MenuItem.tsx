@@ -25,13 +25,13 @@ const MenuItem = (props) => {
       <div>
         <div>
           <h3>{name}</h3>
-          {ingredients.join(', ')}
+          {ingredients ? ingredients.join(', ') : ''}
         </div>
         <div>{price}zł</div>
       </div>
       <div className={styles.buttonsAndCounter}>
         <button className={styles.buttons} onClick={addItem}>+</button>
-        <div className={styles.counter}> {shouldRemoveButtonBeDisplayed && cartItems[indexOfCurrentItemInCart].amount}</div>
+        <div className={styles.counter}> {shouldRemoveButtonBeDisplayed && cartItems[indexOfCurrentItemInCart].count}</div>
         {shouldRemoveButtonBeDisplayed && <button className={styles.buttons} onClick={removeOneItem}>-</button>}
       </div>
     </div>

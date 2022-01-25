@@ -12,9 +12,9 @@ export const cartSlice = createSlice({
       const itemInCartIndex = state.cart.findIndex(item => item.id === newPizza.id);
 
       if (itemInCartIndex !== -1) {
-        state.cart[itemInCartIndex].amount += 1;
+        state.cart[itemInCartIndex].count += 1;
       } else {
-        newPizza.amount = 1;
+        newPizza.count = 1;
         state.cart.push(newPizza);
       }
       state.totalAmount += newPizza.price;
@@ -28,8 +28,8 @@ export const cartSlice = createSlice({
       console.log(itemInCartIndex);
 
       if (itemInCartIndex !== -1) {
-        if (state.cart[itemInCartIndex].amount > 1) {
-          state.cart[itemInCartIndex].amount -= 1;
+        if (state.cart[itemInCartIndex].count > 1) {
+          state.cart[itemInCartIndex].count -= 1;
         } else {
           state.cart.splice(itemInCartIndex, 1);
         }
